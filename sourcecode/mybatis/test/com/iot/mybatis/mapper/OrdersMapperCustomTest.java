@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
 
 public class OrdersMapperCustomTest {
@@ -41,8 +42,8 @@ public class OrdersMapperCustomTest {
 
         // 调用maper的方法
         List<OrdersCustom> list = ordersMapperCustom.findOrdersUser();
-
         System.out.println(list);
+
 
         sqlSession.close();
     }
@@ -74,8 +75,11 @@ public class OrdersMapperCustomTest {
         // 调用maper的方法
         List<Orders> list = ordersMapperCustom
                 .findOrdersAndOrderDetailResultMap();
-
-        System.out.println(list);
+        Iterator it =list.iterator();
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
+//                System.out.println(list);
 
         sqlSession.close();
     }
@@ -90,8 +94,19 @@ public class OrdersMapperCustomTest {
 
         // 调用maper的方法
         List<User> list = ordersMapperCustom.findUserAndItemsResultMap();
+        System.out.println("---------------------------------------------");
+        for (User user:list
+             ) {
+            System.out.println(user);
+            List<Orders> orders = user.getOrdersList();
+            for (Orders o : orders) {
+                System.out.println(o.toString());
+                System.out.println(o.getOrderdetails());
+            }
+            System.out.println("-------------------------------------------");
+        }
 
-        System.out.println(list);
+//        System.out.println(list);
 
         sqlSession.close();
     }

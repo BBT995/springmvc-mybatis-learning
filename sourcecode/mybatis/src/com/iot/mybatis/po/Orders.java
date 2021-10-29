@@ -19,6 +19,7 @@ public class Orders {
 
     //订单明细
     private List<Orderdetail> orderdetails;
+//    private  Orderdetail orderdetails;
 
     public Integer getId() {
         return id;
@@ -79,5 +80,8 @@ public class Orders {
     //public void print(){
     //    System.out.println("----test-print-----"+user+"   user==null: "+(user==null));
     //}
-
+    @Override
+    public String toString(){
+        return "【订单信息】 [id=" +id+",userId="+userId+",number="+number+",createtime="+createtime+",note="+note+"]";
+    }
 }

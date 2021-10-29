@@ -65,7 +65,7 @@ public class Items {
 
     @Override
     public String toString() {
-        return "Items [id=" + id + ", name=" + name + ", price=" + price
+        return "【商品信息】 [id=" + id + ", name=" + name + ", price=" + price
                 + ", pic=" + pic + ", createtime=" + createtime + ", detail="
                 + detail + "]";
     }

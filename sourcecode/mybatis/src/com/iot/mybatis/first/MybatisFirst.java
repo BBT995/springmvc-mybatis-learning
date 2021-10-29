@@ -23,7 +23,7 @@ public class MybatisFirst {
     public void findUserByIdTest() throws IOException {
         // mybatis配置文件
         String resource = "SqlMapConfig.xml";
-        // 得到配置文件流
+        // 得到配置文件流,Resources可以从classpath中加载配置文件
         InputStream inputStream = Resources.getResourceAsStream(resource);
         //创建会话工厂，传入mybatis配置文件的信息
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -82,9 +82,9 @@ public class MybatisFirst {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 插入用户对象
         User user = new User();
-        user.setUsername("王小军");
+        user.setUsername("雷军");
         user.setBirthday(new Date());
-        user.setSex("1");
+        user.setSex("2");
         user.setAddress("河南郑州");
 
         sqlSession.insert("test.insertUser", user);
@@ -93,7 +93,7 @@ public class MybatisFirst {
         sqlSession.commit();
 
         // 获取用户信息主键
-        System.out.println(user.getId());
+        System.out.println("用户主键："+user.getId());
         // 关闭会话
         sqlSession.close();
 

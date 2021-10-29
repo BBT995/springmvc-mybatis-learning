@@ -184,6 +184,7 @@
         最终resultMap对column和property作一个映射关系 （对应关系）
          -->
         <result column="username_" property="username"/>
+        <!--<result column="birthday" property="birthday"/>-->
 
     </resultMap>
 

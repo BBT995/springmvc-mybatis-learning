@@ -16,6 +16,8 @@ public class OrdersCustom extends Orders {
     private String sex;
     private String address;
 
+    private Orders orders;
+
     public String getUsername() {
         return username;
     }
@@ -39,5 +41,6 @@ public class OrdersCustom extends Orders {
     public void setAddress(String address) {
         this.address = address;
     }
+
 
 }

@@ -1,5 +1,8 @@
 package com.iot.mybatis.po;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -34,13 +37,9 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getSex() {
-        return sex;
-    }
+    public String getSex() {return sex;}
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+    public void setSex(String sex) {this.sex = sex;}
 
     public Date getBirthday() {
         return birthday;
@@ -68,7 +67,8 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", username=" + username + ", sex=" + sex
+        return "【用户信息】 [id=" + id + ", username=" + username + ", sex=" + sex
                 + ", birthday=" + birthday + ", address=" + address + "]";
+
     }
 }

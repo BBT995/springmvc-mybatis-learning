@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
 
 public class UserDaoImplTest {
 
@@ -37,6 +39,16 @@ public class UserDaoImplTest {
         User user = userDao.findUserById(1);
 
         System.out.println(user);
+    }
+
+    @Test
+    public void testFindUserByName()throws Exception{
+        UserDao userDao =new UserDaoImpl(sqlSessionFactory);
+        List<User> userList = userDao.findUserByName("三");
+        Iterator iterator=userList.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next().toString());
+        }
     }
 
 }

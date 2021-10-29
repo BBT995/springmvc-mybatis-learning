@@ -10,8 +10,10 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class UserMapperTest {
@@ -63,6 +65,7 @@ public class UserMapperTest {
         UserCustom userCustom = new UserCustom();
         //由于这里使用动态sql，如果不设置某个值，条件不会拼接在sql中
         userCustom.setSex("1");
+        //userCustom.setUid(4055011);
         //userCustom.setUsername("张三");
 
         //传入多个id
@@ -72,16 +75,21 @@ public class UserMapperTest {
         ids.add(16);
         //将ids通过userQueryVo传入statement中
         userQueryVo.setIds(ids);
-
         userQueryVo.setUserCustom(userCustom);
+
         //调用userMapper的方法
 
         List<UserCustom> list = userMapper.findUserList(userQueryVo);
         //List<UserCustom> list = userMapper.findUserList(null);
-
-        System.out.println(list);
+        Iterator it=list.iterator();
+        while (it.hasNext())
+        {
+            System.out.println(it.next());
+        }
+//        System.out.println(list);
 
     }
+
 
     //用户信息综合查询总数
     @Test
@@ -117,10 +125,27 @@ public class UserMapperTest {
 
         //调用userMapper的方法
 
-        User user = userMapper.findUserByIdResultMap(1);
+        User user = userMapper.findUserByIdResultMap(10);
 
         System.out.println(user);
 
     }
-
+//    @Test
+////    public void testByMySelf() throws IOException {
+////        String resource ="SqlMapConfig.xml";
+////        InputStream inputStream = Resources.getResourceAsStream(resource);
+////        SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
+////        SqlSession sqlSession = sqlSessionFactory.openSession();
+////        List<User> list = sqlSession.selectList("com.iot.mybatis.mapper.UserMapper.findUserByName","雷");
+////        System.out.println(list);
+////        sqlSession.close();
+////    }
+    @Test
+    public void testDelByMySelf() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        userMapper.deleteUser(40);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }
