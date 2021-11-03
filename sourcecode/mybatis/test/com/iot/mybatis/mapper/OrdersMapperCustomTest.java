@@ -1,5 +1,6 @@
 package com.iot.mybatis.mapper;
 
+import com.iot.mybatis.po.Orderdetail;
 import com.iot.mybatis.po.Orders;
 import com.iot.mybatis.po.OrdersCustom;
 import com.iot.mybatis.po.User;
@@ -95,8 +96,7 @@ public class OrdersMapperCustomTest {
         // 调用maper的方法
         List<User> list = ordersMapperCustom.findUserAndItemsResultMap();
         System.out.println("---------------------------------------------");
-        for (User user:list
-             ) {
+        for (User user:list) {
             System.out.println(user);
             List<Orders> orders = user.getOrdersList();
             for (Orders o : orders) {
@@ -142,10 +142,10 @@ public class OrdersMapperCustomTest {
         // 如果sqlSession去执行commit操作（执行插入、更新、删除），清空SqlSession中的一级缓存，这样做的目的为了让缓存中存储的是最新的信息，避免脏读。
 
         ////更新user1的信息
-        //user1.setUsername("测试用户22");
-        //userMapper.updateUser(user1);
+//        user1.setUsername("测试用户22");
+//        userMapper.updateUser(user1);
         ////执行commit操作去清空缓存
-        //sqlSession.commit();
+//        sqlSession.commit();
 
         // 第二次发起请求，查询id为1的用户
         User user2 = userMapper.findUserById(1);
@@ -173,7 +173,7 @@ public class OrdersMapperCustomTest {
 //		//使用sqlSession3执行commit()操作
 //		UserMapper userMapper3 = sqlSession3.getMapper(UserMapper.class);
 //		User user  = userMapper3.findUserById(1);
-//		user.setUsername("张明明");
+//		user.setUsername("张haha");
 //		userMapper3.updateUser(user);
 //		//执行提交，清空UserMapper下边的二级缓存
 //		sqlSession3.commit();
@@ -185,7 +185,7 @@ public class OrdersMapperCustomTest {
         System.out.println(user2);
 
         sqlSession2.close();
-
+        //在中软最后一次提交 2021-11-03
     }
 
 }
